@@ -1,4 +1,4 @@
-import React, { useReducer, createContext } from 'react';
+import React, { createContext, useReducer } from 'react';
 
 export const TaskContext = createContext();
 
@@ -11,7 +11,12 @@ function reducer(state, action) {
     case 'UPDATE_TASK':
       return {
         ...state,
-        tasks: state.tasks.map(t => t.id === action.task.id ? action.task : t)
+        tasks: state.tasks.map(t => t.id === action.task.id ? action.task : t),
+      };
+    case 'DELETE_TASK':
+      return {
+        ...state,
+        tasks: state.tasks.filter(t => t.id !== action.id),
       };
     case 'REORDER_TASKS':
       return { ...state, tasks: action.tasks };
@@ -22,5 +27,12 @@ function reducer(state, action) {
 
 export function TaskProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
-  return <TaskContext.Provider value={{ state, dispatch }}>{children}</TaskContext.Provider>;
+
+  const deleteTask = id => dispatch({ type: 'DELETE_TASK', id });
+
+  return (
+    <TaskContext.Provider value={{ state, dispatch, deleteTask }}>
+      {children}
+    </TaskContext.Provider>
+  );
 }
