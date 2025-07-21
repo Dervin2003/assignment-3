@@ -1,0 +1,23 @@
+.task-card {
+  padding: 1rem;
+  margin: 0.5rem 0;
+  border-radius: 8px;
+  cursor: pointer;
+  user-select: none;
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.task-card:hover {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.task-card h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.2rem;
+}
+
+.task-card p {
+  margin: 0.25rem 0;
+  font-size: 0.95rem;
+  color: #333;
+}

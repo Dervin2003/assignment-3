@@ -1,0 +1,9 @@
+.task-list {
+  padding: 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.task-list > div {
+  margin-bottom: 0.5rem;
+}
